@@ -1,0 +1,173 @@
+﻿@model ProjetoFinal.Web.Models.CursoPageVm
+@{
+    ViewData["Title"] = "Kasper - Plataforma de Cursos";
+
+    // filtros e catálogo continuam funcionando normalmente
+    var f = Model.Filter;
+    var result = Model.PageResult!;
+
+    // ✅ ESTA LINHA É A IMPORTANTE:
+    var cursos = Model.Destaques; // lista completa para o carrossel
+}
+
+<link href="~/css/HomeIndex.css" rel="stylesheet" />
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos do EditGlobal -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<!-- ===== SUPERHERO SECTION AJUSTADA ===== -->
+<section id="about" class="position-relative d-flex align-items-center justify-content-center text-center"
+         style="min-height: 70vh; background: url('https://dragos.brightspotcdn.com/dims4/default/6e51dd7/2147483647/strip/true/crop/1641x1231+179+0/resize/1440x1080!/format/webp/quality/90/?url=https%3A%2F%2Fdragos-production-dragos.s3.us-west-2.amazonaws.com%2Fbrightspot%2Ffa%2F68%2Fde6bf6714391a1e7d4eb869f533f%2Findustries-solution-point-3-teal.webp') center no-repeat;">
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <div class="container position-relative text-center" style="z-index: 2; max-width: 700px;">
+
+        <!-- 🔹 TÍTULO PRINCIPAL -->
+        <h1 class="fw-bold mb-3 hero-title"
+            style="font-family: 'Montserrat', sans-serif; font-size: 2rem; color: rgb(255, 255, 255);">
+            Bem-vindo à <span style="color: #ff0000;">Kasper</span>
+        </h1>
+
+        <!-- 🔹 SUBTÍTULO / DESCRIÇÃO -->
+        <p class="mb-4 hero-subtitle"
+           style="font-family: 'Montserrat', sans-serif; font-size: 1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.4;">
+            Inovação, tecnologia e design reunidos<br>
+            em um só lugar.
+        </p>
+
+        <!-- 🔹 BOTÃO SAIBA MAIS COM BORDA BRANCA -->
+        <a href="#catalog" class="btn btn-outline-light px-4 py-2 fw-semibold hero-btn"
+           style="font-family: 'Montserrat', sans-serif; border: 2px solid white; transition: all 0.3s;">
+            Saiba Mais
+        </a>
+    </div>
+</section>
+<!-- ===== CARROSSEL DE CURSOS ===== -->
+<section id="featured-courses" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold mb-4 text-center" style="font-family: 'Montserrat', sans-serif;">
+            Cursos em destaque
+        </h2>
+
+        <div id="cursoCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                @{
+                    var destaques = result.Items.ToList();
+                    var total = cursos.Count;
+                    var groupSize = 4;
+                    var groupIndex = 0;
+
+                    for (int i = 0; i < total; i += groupSize)
+                    {
+                        var group = cursos.Skip(i).Take(groupSize).ToList();
+                        <div class="carousel-item @(groupIndex == 0 ? "active" : "")">
+                            <div class="d-flex justify-content-center gap-4">
+                                @foreach (var curso in group)
+                                {
+                                    <div class="card shadow-sm border-0 rounded-4 text-center"
+                                         style="width: 280px; min-height: 400px;">
+                                        <img src="@curso.ImagemCapaUrl" class="card-img-top rounded-top-4"
+                                             alt="@curso.Nome" style="height: 160px; object-fit: cover;" />
+                                        <div class="card-body d-flex flex-column">
+                                            <!-- Nome e Tipo com linha abaixo -->
+                                            <div class="pb-2 mb-2 border-bottom">
+                                                <h5 class="card-title fw-bold mb-1">@curso.Nome</h5>
+                                                <p class="text-muted mb-0">@curso.NomeTipoCurso</p>
+                                            </div>
+                                            <!-- Descrição -->
+                                            <p class="card-text text-secondary small flex-grow-1" style="line-height: 1.4;">
+                                                @curso.Descricao
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                        </div>
+                    </div>
+;
+                        groupIndex++;
+                    }
+                }
+            </div>
+
+            <!-- Controles pretos -->
+            <!-- Controles pretos reposicionados -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#cursoCarousel" data-bs-slide="prev"
+                    style="left: -70px; width: 80px; height: 50px; top: 50%;">
+                <span class="carousel-control-prev-icon"
+                      style="background-color:#6c757d; border-radius:50%;"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#cursoCarousel" data-bs-slide="next"
+                    style="right: -70px; width: 80px; height: 50px; top: 50%;">
+                <span class="carousel-control-next-icon"
+                      style="background-color:#6c757d; border-radius:50%;"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+
+
+        </div>
+    </div>
+</section>
+
+
+<section id="catalog" class="mt-5">
+    @await Html.PartialAsync("_CursoCatalogSection", Model)
+</section>
+
+
+
+<footer class="site-footer mt-5 pt-5 bg-light text-dark position-relative"
+        style="background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Quadrados decorativos premium -->
+    <div class="footer-square sq-red-a"></div>
+    <div class="footer-square sq-red-b"></div>
+
+    <div class="container pb-4">
+        <div class="row gy-5">
+
+            <!-- Logo -->
+            <div class="col-12 col-md-4 d-flex flex-column gap-1">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="logo-mini fw-bold fs-4 text-danger" style="font-family: 'Montserrat', sans-serif;">K</span>
+                    <span class="brand-mini fw-bold fs-5" style="font-family: 'Montserrat', sans-serif;">asper</span>
+                </div>
+                <small class="text-muted">Soluções acadêmicas modernas</small>
+            </div>
+
+            <!-- Mapa do site (organização premium) -->
+            <div class="col-12 col-md-4">
+                <h6 class="mb-3 fw-semibold">Mapa do site</h6>
+
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#catalog">Catálogo</a></li>
+                    <li><a href="/Auth/Login">Área restrita</a></li>
+                </ul>
+            </div>
+
+            <!-- Direitos autorais -->
+            <div class="col-12 col-md-4 text-md-end">
+                <small class="text-muted">© @DateTime.UtcNow.Year Kasper — Projeto acadêmico</small>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+

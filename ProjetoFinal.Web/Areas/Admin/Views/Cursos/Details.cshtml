@@ -1,0 +1,78 @@
+﻿@model ProjetoFinal.Domain.Entities.Curso
+
+@{
+    ViewData["Title"] = "Detalhes do Curso";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <a asp-area="Admin" asp-controller="Cursos" asp-action="Index" class="btn btn-outline-secondary mb-3">
+        <i class="bi bi-arrow-left"></i> Voltar para lista de cursos
+    </a>
+
+    <div class="form-card shadow-sm rounded-4 border-0">
+        <div class="card-body p-4">
+
+            <div class="row g-4 align-items-center">
+
+                <!-- Imagem -->
+                <div class="col-md-5 text-center">
+                    <div class="curso-img-wrapper rounded-4 overflow-hidden shadow-sm" style="max-height: 260px;">
+                        @if (!string.IsNullOrEmpty(Model.ImagemCapaUrl))
+                        {
+                            <img src="@Model.ImagemCapaUrl" alt="Imagem do Curso" class="img-fluid rounded-4" />
+                        }
+                        else
+                        {
+                            <div class="bg-light d-flex justify-content-center align-items-center w-100 h-100 rounded-4" style="height: 260px;">
+                                <i class="bi bi-image fs-1 text-muted"></i>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Informações -->
+                <div class="col-md-7">
+
+                    <h3 class="fw-bold mb-3" style="font-family: 'Montserrat', sans-serif;">
+                        @Model.Nome
+                    </h3>
+
+                    <div class="mb-3">
+                        @if (Model.TipoCurso != null)
+                        {
+                            <span class="badge bg-danger me-2 px-3 py-2">@Model.TipoCurso.Nome</span>
+                        }
+                        @if (Model.Materia != null)
+                        {
+                            <span class="badge bg-warning text-dark px-3 py-2">@Model.Materia.Nome</span>
+                        }
+                    </div>
+
+                    <p class="text-muted" style="font-size: 1rem;">
+                        @Model.Descricao
+                    </p>
+
+                    <div class="mt-4 d-flex justify-content-end">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+                            <i class="bi bi-pencil me-1"></i> Editar Curso
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

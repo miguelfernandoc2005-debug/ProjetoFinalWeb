@@ -1,0 +1,43 @@
+﻿/* Quadrados decorativos premium */
+.footer-square {
+    position: absolute;
+    border: 3px solid rgba(220, 53, 69, 0.55);
+    border-radius: 10px;
+    width: 55px;
+    height: 55px;
+    backdrop-filter: blur(6px);
+    opacity: 0.85;
+}
+
+/* canto superior esquerdo */
+.sq-red-a {
+    top: -25px;
+    left: -25px;
+}
+
+/* canto inferior direito */
+.sq-red-b {
+    bottom: -25px;
+    right: -25px;
+}
+
+/* Lista premium */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+    .footer-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: 0.2s ease;
+    }
+
+        .footer-links a:hover {
+            color: #dc3545;
+            padding-left: 4px;
+        }

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProjetoFinal.Domain.Entities.Materia>
+
+@{
+    ViewData["Title"] = "Lista de Matérias";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Lista de Matérias
+    </h2>
+
+    <div class="form-card shadow-sm rounded-4 border-0 p-3">
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Matérias cadastradas</h5>
+
+                <a asp-area="Admin" asp-controller="Materias" asp-action="Create" class="btn btn-dark">
+                    <i class="bi bi-plus-circle me-1"></i> Nova Matéria
+                </a>
+            </div>
+
+            <table class="table table-hover align-middle table-materias">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nome</th>
+                        <th style="width: 180px;">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var materia in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@materia.Nome</td>
+
+                            <td>
+
+                                <!-- Editar -->
+                                <a asp-area="Admin" asp-controller="Materias" asp-action="Edit"
+                                   asp-route-id="@materia.Id"
+                                   class="btn btn-sm btn-action-edit me-1" title="Editar">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <!-- Detalhes -->
+                                <a asp-area="Admin" asp-controller="Materias" asp-action="Details"
+                                   asp-route-id="@materia.Id"
+                                   class="btn btn-sm btn-action-details me-1" title="Detalhes">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                <!-- Excluir -->
+                                <a asp-area="Admin" asp-controller="Materias" asp-action="Delete"
+                                   asp-route-id="@materia.Id"
+                                   class="btn btn-sm btn-action-delete" title="Excluir">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

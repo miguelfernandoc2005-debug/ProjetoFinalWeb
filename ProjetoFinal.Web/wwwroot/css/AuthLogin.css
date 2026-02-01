@@ -1,0 +1,87 @@
+﻿/* Fundo escuro com overlay */
+.login-bg {
+    position: relative;
+    z-index: 1; /* conteúdo fica acima */
+}
+
+    /* ✅ Fundo fora do fluxo, cobrindo tudo */
+    .login-bg::before {
+        content: "";
+        position: fixed; /* ✅ fora do fluxo */
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient( rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75) ), url('https://dragos.brightspotcdn.com/dims4/default/6e51dd7/2147483647/strip/true/crop/1641x1231+179+0/resize/1440x1080!/format/webp/quality/90/?url=https%3A%2F%2Fdragos-production-dragos.s3.us-west-2.amazonaws.com%2Fbrightspot%2Ffa%2F68%2Fde6bf6714391a1e7d4eb869f533f%2Findustries-solution-point-3-teal.webp') center/cover no-repeat;
+        z-index: -1; /* ✅ fica atrás do conteúdo */
+    }
+
+.login-bg {
+    padding-top: 140px; /* ✅ controla o afastamento do topo */
+    padding-bottom: 80px;
+    display: flex;
+    justify-content: center; /* ✅ centraliza horizontalmente */
+}
+
+
+section.login-bg + * {
+    position: relative;
+}
+
+
+/* Card com leve transparência */
+.login-card {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    border-top: 4px solid #dc3545;
+}
+
+/* Inputs com borda branca */
+.login-input {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+    .login-input::placeholder {
+        color: #e0e0e0;
+    }
+
+    .login-input:focus {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: #dc3545;
+        box-shadow: 0 0 8px rgba(220, 53, 69, 0.4);
+        color: white;
+    }
+
+/* Botão vermelho */
+.login-btn-red {
+    background: linear-gradient(135deg, #dc3545, #8a1f2b);
+    border: none;
+    color: white;
+    transition: 0.25s ease-in-out;
+    border-radius: 10px;
+}
+
+    .login-btn-red:hover {
+        background: linear-gradient(135deg, #b02a37, #6f1a22);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(220, 53, 69, 0.35);
+    }
+
+    .login-btn-red:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+/* Checkbox */
+.form-check-label {
+    color: white;
+}
+
+/* Link */
+.login-bg a:hover {
+    color: #dc3545 !important;
+}

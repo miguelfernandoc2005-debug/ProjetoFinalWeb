@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Gestão — Visão Geral";
+}
+<link href="~/css/Manage.css" rel="stylesheet" />
+
+<div class="manage-wrapper">
+    <h2 class="mb-4 fw-bold titulo-gestao">Gestão</h2>
+    <p class="text-secondary mb-4 subtitulo-gestao">Selecione um módulo para gerenciar.</p>
+
+    <div class="grid-xadrez">
+        <div class="card-xadrez card-ativa">
+            <h5 class="card-title">Cursos</h5>
+            <p class="card-description">Cadastrar, editar e inativar cursos.</p>
+            <a class="btn mt-auto" asp-area="Admin" asp-controller="Cursos" asp-action="Index">Abrir</a>
+        </div>
+
+        <div class="card-xadrez card-vazia"></div>
+
+        <div class="card-xadrez card-ativa">
+            <h5 class="card-title">Matérias</h5>
+            <p class="card-description">Manter lista de matérias.</p>
+            <a class="btn mt-auto" asp-area="Admin" asp-controller="Materias" asp-action="Index">Abrir</a>
+        </div>
+
+        <div class="card-xadrez card-vazia"></div>
+
+        <div class="card-xadrez card-ativa">
+            <h5 class="card-title">Tipos de Curso</h5>
+            <p class="card-description">Gerenciar tipos de curso disponíveis.</p>
+            <a class="btn mt-auto" asp-area="Admin" asp-controller="TiposDeCursos" asp-action="Index">Abrir</a>
+        </div>
+
+        <div class="card-xadrez card-vazia"></div>
+
+        <div class="card-xadrez card-vazia"></div>
+        <div class="card-xadrez card-vazia centro-gestao">Central de Gestão</div>
+        <div class="card-xadrez card-vazia"></div>
+    </div>
+</div>
+

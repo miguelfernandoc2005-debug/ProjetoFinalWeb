@@ -1,0 +1,52 @@
+﻿@model ProjetoFinal.Domain.Entities.TipoCurso
+
+@{
+    ViewData["Title"] = "Editar Tipo de Curso";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Editar Tipo de Curso
+    </h2>
+
+    <div class="form-card shadow-sm rounded-4 border-0">
+        <div class="card-body p-4">
+
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label fw-semibold">Nome</label>
+                    <input asp-for="Nome" class="form-control rounded-3" />
+                    <span asp-validation-for="Nome" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descricao" class="form-label fw-semibold">Descrição</label>
+                    <textarea asp-for="Descricao" class="form-control rounded-3" rows="4"></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger small"></span>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-dark me-2">
+                        <i class="bi bi-save me-1"></i> Salvar alterações
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

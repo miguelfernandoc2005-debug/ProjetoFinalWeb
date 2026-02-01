@@ -1,0 +1,100 @@
+﻿@model ProjetoFinal.Domain.Entities.Curso
+
+@{
+    ViewData["Title"] = "Editar Curso";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Editar Curso
+    </h2>
+
+    <div class="form-card shadow-sm rounded-4 border-0">
+        <div class="card-body p-4">
+
+            <form asp-action="Edit" enctype="multipart/form-data">
+
+                <!-- ID oculto -->
+                <input type="hidden" asp-for="Id" />
+
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label fw-semibold">Nome</label>
+                    <input asp-for="Nome" class="form-control rounded-3" />
+                    <span asp-validation-for="Nome" class="text-danger small"></span>
+                </div>
+
+                <!-- Descrição -->
+                <div class="mb-3">
+                    <label asp-for="Descricao" class="form-label fw-semibold">Descrição</label>
+                    <textarea asp-for="Descricao" class="form-control rounded-3" rows="3"></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger small"></span>
+                </div>
+
+                <!-- Matéria -->
+                <div class="mb-3">
+                    <label asp-for="IdMateria" class="form-label fw-semibold">Matéria</label>
+                    <select asp-for="IdMateria" asp-items="ViewBag.Materias" class="form-select rounded-3">
+                        <option value="">Selecione uma matéria</option>
+                    </select>
+                    <span asp-validation-for="IdMateria" class="text-danger small"></span>
+                </div>
+
+                <!-- Tipo de Curso -->
+                <div class="mb-3">
+                    <label asp-for="IdTipoCurso" class="form-label fw-semibold">Tipo de Curso</label>
+                    <select asp-for="IdTipoCurso" asp-items="ViewBag.TiposCurso" class="form-select rounded-3">
+                        <option value="">Selecione um tipo</option>
+                    </select>
+                    <span asp-validation-for="IdTipoCurso" class="text-danger small"></span>
+                </div>
+
+                <!-- Carga Horária -->
+                <div class="mb-3">
+                    <label asp-for="CargaHoraria" class="form-label fw-semibold">Carga Horária (em horas)</label>
+                    <input asp-for="CargaHoraria" class="form-control rounded-3" min="1" />
+                    <span asp-validation-for="CargaHoraria" class="text-danger small"></span>
+                </div>
+
+                <!-- Upload de imagem -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Imagem do Curso (upload)</label>
+                    <input type="file" name="ImagemUpload" class="form-control rounded-3" accept="image/*" />
+                </div>
+
+                <!-- URL de imagem -->
+                <div class="mb-3">
+                    <label asp-for="ImagemCapaUrl" class="form-label fw-semibold">Imagem do Curso (URL)</label>
+                    <input asp-for="ImagemCapaUrl" type="url" class="form-control rounded-3"
+                           placeholder="https://exemplo.com/imagem.jpg" />
+                    <span asp-validation-for="ImagemCapaUrl" class="text-danger small"></span>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-1"></i> Salvar Alterações
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancelar</a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

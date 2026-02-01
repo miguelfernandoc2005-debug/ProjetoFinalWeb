@@ -1,0 +1,81 @@
+﻿/* ===== Quadrados decorativos grandes ===== */
+.bg-square {
+    position: fixed;
+    background: rgba(240, 230, 210, 0.45);
+    border-radius: 16px;
+    z-index: -3;
+    filter: blur(2px);
+    transform: rotate(8deg);
+}
+
+    .bg-square.big {
+        width: 320px;
+        height: 320px;
+    }
+
+    .bg-square.mid {
+        width: 180px;
+        height: 180px;
+    }
+
+/* Posições padrão */
+.sq1 {
+    top: 40px;
+    left: -80px;
+}
+
+.sq2 {
+    top: 200px;
+    right: -120px;
+}
+
+.sq3 {
+    bottom: -100px;
+    left: 20%;
+}
+
+.sq4 {
+    bottom: 120px;
+    right: 10%;
+}
+
+.sq5 {
+    top: 350px;
+    left: 60%;
+}
+
+/* ===== Wrapper do formulário ===== */
+.form-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+}
+
+    /* Quadrados pequenos ao redor do card */
+    .form-wrapper::before,
+    .form-wrapper::after {
+        content: "";
+        position: absolute;
+        width: 90px;
+        height: 90px;
+        background: rgba(240, 230, 210, 0.6);
+        border-radius: 12px;
+        z-index: -1;
+        filter: blur(1px);
+    }
+
+    .form-wrapper::before {
+        top: -25px;
+        left: -25px;
+    }
+
+    .form-wrapper::after {
+        bottom: -25px;
+        right: -25px;
+    }
+
+/* ===== Card do formulário ===== */
+.form-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+}

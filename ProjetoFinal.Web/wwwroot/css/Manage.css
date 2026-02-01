@@ -1,0 +1,125 @@
+﻿/* ===== FUNDO GLOBAL (fora do fluxo) ===== */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Degradê branco → creme, começando aos 70px */
+    background: linear-gradient( to bottom, #ffffff 0px, /* navbar branco */
+    #ffffff 70px, /* início da transição */
+    #f8f3e6 220px, /* creme suave */
+    #f3eadd 100% /* creme mais profundo */
+    );
+    z-index: -1; /* fica atrás de tudo */
+}
+
+/* ===== WRAPPER DO CONTEÚDO ===== */
+.manage-wrapper {
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    /* IMPORTANTE: sem fundo aqui */
+    background: transparent;
+}
+
+/* ===== Títulos ===== */
+.titulo-gestao {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    color: #333;
+    text-align: center;
+}
+
+.subtitulo-gestao {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+}
+
+/* ===== Grid ===== */
+.grid-xadrez {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== Cards ativos ===== */
+.card-xadrez.card-ativa {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: 0.25s ease-in-out;
+    border-top: 5px solid #dc3545;
+}
+
+    .card-xadrez.card-ativa:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+/* Títulos e textos */
+.card-xadrez .card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #333;
+}
+
+.card-xadrez .card-description {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Botão */
+.card-xadrez .btn {
+    background: #dc3545;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: 0.25s ease-in-out;
+}
+
+    .card-xadrez .btn:hover {
+        background: #b02a37;
+    }
+
+/* ===== Cards vazios ===== */
+.card-xadrez.card-vazia {
+    background: transparent;
+    border-radius: 14px;
+    border: 2px dashed #d0d4d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ===== Central de Gestão ===== */
+.centro-gestao {
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 992px) {
+    .grid-xadrez {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .grid-xadrez {
+        grid-template-columns: 1fr;
+    }
+}

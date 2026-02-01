@@ -1,0 +1,88 @@
+﻿body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient( to bottom, #ffffff 0px, #ffffff 75px, #f8f3e6 220px, #f3eadd 100% );
+    z-index: -1;
+}
+/* ===== Tabela elegante ===== */
+.table-materias {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+}
+
+    /* Cabeçalho */
+    .table-materias thead th {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #444;
+        text-align: center;
+        background-color: #f1ece3 !important;
+        border-bottom: 2px solid #e0d8cc;
+    }
+
+    /* Células */
+    .table-materias td {
+        text-align: center;
+        border-color: #e6dfd4 !important;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+
+    /* Linhas */
+    .table-materias tbody tr {
+        background: rgba(255, 255, 255, 0.6);
+        transition: 0.2s ease;
+    }
+
+        .table-materias tbody tr:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+/* ===== Botões de ação ===== */
+
+/* Editar → amarelo */
+.btn-action-edit {
+    background: #fff3cd;
+    color: #8a6d1d;
+    border: none;
+    border-radius: 8px;
+}
+
+    .btn-action-edit:hover {
+        background: #ffe8a3;
+    }
+
+/* Detalhes → verde */
+.btn-action-details {
+    background: #d4f5dd;
+    color: #1f7a3a;
+    border: none;
+    border-radius: 8px;
+}
+
+    .btn-action-details:hover {
+        background: #b9eac7;
+    }
+
+/* Excluir → vermelho */
+.btn-action-delete {
+    background: #f8d7da;
+    color: #842029;
+    border: none;
+    border-radius: 8px;
+}
+
+    .btn-action-delete:hover {
+        background: #f1bfc4;
+    }
+
+/* Ícones */
+.table-materias i {
+    font-size: 1rem;
+}

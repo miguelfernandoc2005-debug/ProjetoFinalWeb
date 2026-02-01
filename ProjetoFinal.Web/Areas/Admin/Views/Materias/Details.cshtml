@@ -1,0 +1,58 @@
+﻿@model ProjetoFinal.Domain.Entities.Materia
+
+@{
+    ViewData["Title"] = "Excluir Matéria";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Detalhes
+    </h2>
+
+    <div class="form-card shadow-sm border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <!-- Informações da Matéria (sem fundo amarelo) -->
+            <div class="rounded-4 shadow-sm mb-4 p-3"
+                 style="background: rgba(255,255,255,0.55); backdrop-filter: blur(6px); border: 1px solid rgba(0,0,0,0.08);">
+
+                <h5 class="fw-bold mb-3">Informações da Matéria</h5>
+
+                <!-- Nome -->
+                <p class="mb-2">
+                    <strong>Nome:</strong> @Model.Nome
+                </p>
+
+                <!-- Cursos relacionados (lógica correta do Details) -->
+                <h6 class="fw-semibold mt-3">Cursos relacionados:</h6>
+
+                <ul class="list-group list-group-flush mb-3">
+
+                    @foreach (var curso in Model.Cursos ?? Enumerable.Empty<ProjetoFinal.Domain.Entities.Curso>())
+                    {
+                        <li class="list-group-item">@curso.Nome</li>
+                    }
+
+                    @if (Model.Cursos == null || !Model.Cursos.Any())
+                    {
+                        <li class="list-group-item text-muted fst-italic">
+                            Nenhum curso associado.
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</div>

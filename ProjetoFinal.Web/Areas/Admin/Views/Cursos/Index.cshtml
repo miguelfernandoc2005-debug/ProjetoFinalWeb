@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProjetoFinal.Domain.Entities.Curso>
+
+@{
+    ViewData["Title"] = "Cursos";
+}
+
+<link href="~/css/CursosIndexTable.css" rel="stylesheet" />
+
+<h2 class="mb-4 fw-bold" style="font-family: 'Montserrat', sans-serif; text-align:center;">
+    Cursos Ativos
+</h2>
+
+<div class="text-center mb-3">
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle me-1"></i> Novo Curso
+    </a>
+</div>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Matéria</th>
+            <th>Tipo de Curso</th>
+            <th style="width: 180px;">Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var curso in Model)
+        {
+            <tr>
+                <td>@curso.Nome</td>
+                <td>@curso.Descricao</td>
+                <td>@curso.Materia?.Nome</td>
+                <td>@curso.TipoCurso?.Nome</td>
+
+                <td>
+
+                    <!-- Botão Detalhes (verde) -->
+                    <a asp-action="Details"
+                       asp-route-id="@curso.Id"
+                       class="btn btn-sm btn-action-details me-1"
+                       title="Detalhes">
+                        <i class="bi bi-eye"></i>
+                    </a>
+
+                    <!-- Botão Editar (amarelo) -->
+                    <a asp-action="Edit"
+                       asp-route-id="@curso.Id"
+                       class="btn btn-sm btn-action-edit me-1"
+                       title="Editar">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <!-- Botão Excluir (vermelho) -->
+                    <a asp-action="Delete"
+                       asp-route-id="@curso.Id"
+                       class="btn btn-sm btn-action-delete"
+                       title="Excluir">
+                        <i class="bi bi-trash"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

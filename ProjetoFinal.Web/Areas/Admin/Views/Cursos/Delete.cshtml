@@ -1,0 +1,58 @@
+﻿@model ProjetoFinal.Domain.Entities.Curso
+
+@{
+    ViewData["Title"] = "Excluir Curso";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Confirmar Exclusão
+    </h2>
+
+    <div class="form-card shadow-sm rounded-4 border-0">
+        <div class="card-body p-4">
+
+            <div class="alert alert-warning rounded-4 shadow-sm">
+                <h4 class="alert-heading fw-bold">Tem certeza que deseja apagar este curso?</h4>
+                <p class="mb-3">
+                    Essa ação irá desativar o curso <strong>@Model.Nome</strong>,
+                    mas os dados não serão apagados do sistema.
+                </p>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-3 fw-semibold">Matéria</dt>
+                    <dd class="col-sm-9">@Model.Materia?.Nome</dd>
+
+                    <dt class="col-sm-3 fw-semibold">Tipo de Curso</dt>
+                    <dd class="col-sm-9">@Model.TipoCurso?.Nome</dd>
+
+                    <dt class="col-sm-3 fw-semibold">Descrição</dt>
+                    <dd class="col-sm-9">@Model.Descricao</dd>
+                </dl>
+            </div>
+
+            <form asp-action="DeleteConfirmed" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-trash"></i> Sim, apagar
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

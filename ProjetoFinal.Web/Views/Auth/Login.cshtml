@@ -1,0 +1,62 @@
+﻿@model ProjetoFinal.Web.Models.LoginVm
+@{
+    ViewData["Title"] = "Área Restrita - Kasper";
+}
+
+<link href="~/css/AuthLogin.css" rel="stylesheet" />
+
+<section class="login-bg py-5" style="font-family: 'Montserrat', sans-serif;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+
+                <div class="card login-card shadow-sm rounded-4 border-0">
+                    <div class="card-body p-4">
+
+                        <h2 class="mb-4 text-center fw-bold text-white" style="font-size: 1.8rem;">
+                            Área Restrita
+                        </h2>
+
+                        <form asp-action="Login" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" asp-for="ReturnUrl" />
+
+                            <div class="mb-3">
+                                <label asp-for="Email" class="form-label fw-semibold text-white">Email</label>
+                                <input asp-for="Email" class="form-control login-input" placeholder="seu@email.com" />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Password" class="form-label fw-semibold text-white">Senha</label>
+                                <input asp-for="Password" type="password" class="form-control login-input" placeholder="••••••••" />
+                                <span asp-validation-for="Password" class="text-danger small"></span>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input asp-for="RememberMe" class="form-check-input" />
+                                <label asp-for="RememberMe" class="form-check-label text-white">Lembrar-me</label>
+                            </div>
+
+                            <button type="submit" class="btn login-btn-red w-100 py-2 fw-semibold">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Entrar
+                            </button>
+
+                            <div class="text-danger mt-3">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger small" })
+                            </div>
+                        </form>
+
+                        <div class="mt-4 text-center">
+                            <a href="/" class="text-decoration-none text-light">
+                                <i class="bi bi-arrow-left-circle me-1"></i> Voltar à página inicial
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

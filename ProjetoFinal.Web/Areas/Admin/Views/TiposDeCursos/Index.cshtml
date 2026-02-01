@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProjetoFinal.Domain.Entities.TipoCurso>
+
+@{
+    ViewData["Title"] = "Tipos de Curso";
+}
+
+<link href="~/css/TiposCursosIndexTable.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+
+<!-- Quadrados decorativos médios -->
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="tipos-bg">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Tipos de Curso
+    </h2>
+
+    <div class="tipos-wrapper">
+
+        <table class="table table-hover align-middle table-tipos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th style="width: 120px;">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var tipo in Model)
+                {
+                    <tr>
+                        <td>@tipo.Nome</td>
+
+                        <td>
+                            <a asp-area="Admin"
+                               asp-controller="TiposDeCursos"
+                               asp-action="Edit"
+                               asp-route-id="@tipo.Id"
+                               class="btn btn-sm btn-action-edit"
+                               title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-area="Admin"
+           asp-controller="TiposDeCursos"
+           asp-action="Create"
+           class="btn btn-success">
+            <i class="bi bi-plus-circle me-1"></i> Novo Tipo de Curso
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,52 @@
+﻿@model ProjetoFinal.Domain.Entities.Materia
+
+@{
+    ViewData["Title"] = "Excluir Matéria";
+}
+
+<link href="~/css/EditGlobal.css" rel="stylesheet" />
+
+<!-- Quadrados decorativos grandes -->
+<div class="bg-square big sq1"></div>
+<div class="bg-square big sq2"></div>
+<div class="bg-square big sq3"></div>
+<div class="bg-square mid sq4"></div>
+<div class="bg-square mid sq5"></div>
+
+<div class="form-wrapper">
+
+    <h2 class="mb-4 fw-bold text-center" style="font-family: 'Montserrat', sans-serif;">
+        Excluir Matéria
+    </h2>
+
+    <div class="form-card shadow-sm border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <!-- Mensagem de confirmação -->
+            <p class="fs-5 mb-4">
+                Tem certeza que deseja excluir esta matéria?
+            </p>
+
+            <!-- Nome da matéria (igual ao Details) -->
+            <h5 class="fw-bold mb-2">@Model.Nome</h5>
+
+            <!-- Formulário de exclusão -->
+            <form asp-action="Delete" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Id" />
+
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-1"></i> Confirmar Exclusão
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

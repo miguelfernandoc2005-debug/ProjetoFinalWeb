@@ -1,0 +1,122 @@
+﻿/* ===== Quadrados decorativos ===== */
+.bg-square {
+    position: fixed;
+    background: rgba(240, 230, 210, 0.45);
+    border-radius: 16px;
+    z-index: -3;
+    filter: blur(2px);
+    transform: rotate(8deg);
+}
+
+    /* Tamanhos */
+    .bg-square.big {
+        width: 320px;
+        height: 320px;
+    }
+
+    .bg-square.mid {
+        width: 180px;
+        height: 180px;
+    }
+
+/* Posições individuais */
+.sq1 {
+    top: 40px;
+    left: -80px;
+}
+
+.sq2 {
+    top: 200px;
+    right: -120px;
+}
+
+.sq3 {
+    bottom: -100px;
+    left: 20%;
+}
+
+.sq4 {
+    bottom: 120px;
+    right: 10%;
+}
+
+.sq5 {
+    top: 350px;
+    left: 60%;
+}
+
+/* ===== Wrapper da tabela ===== */
+.tipos-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+    /* Quadrados pequenos ao redor da tabela */
+    .tipos-wrapper::before,
+    .tipos-wrapper::after {
+        content: "";
+        position: absolute;
+        width: 90px;
+        height: 90px;
+        background: rgba(240, 230, 210, 0.6);
+        border-radius: 12px;
+        z-index: -1;
+        filter: blur(1px);
+    }
+
+    .tipos-wrapper::before {
+        top: -25px;
+        left: -25px;
+    }
+
+    .tipos-wrapper::after {
+        bottom: -25px;
+        right: -25px;
+    }
+
+/* ===== Estilo da tabela ===== */
+.table-tipos {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+}
+
+    .table-tipos thead th {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #444;
+        text-align: center;
+        background-color: #f1ece3 !important;
+        border-bottom: 2px solid #e0d8cc;
+    }
+
+    .table-tipos td {
+        text-align: center;
+        border-color: #e6dfd4 !important;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+
+    .table-tipos tbody tr {
+        background: rgba(255, 255, 255, 0.6);
+        transition: 0.2s ease;
+    }
+
+        .table-tipos tbody tr:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+/* Botão Editar */
+.btn-action-edit {
+    background: #fff3cd;
+    color: #8a6d1d;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+
+    .btn-action-edit:hover {
+        background: #ffe8a3;
+    }

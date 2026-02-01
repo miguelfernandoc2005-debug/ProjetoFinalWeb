@@ -1,0 +1,178 @@
+﻿@model ProjetoFinal.Web.Models.CursoPageVm
+
+@{
+    var f = Model.Filter;
+    var result = Model.PageResult!;
+    var totalPages = (int)Math.Ceiling(result.Total / (double)f.PageSize);
+}
+
+<link rel="stylesheet" href="~/css/CursoCatalogSection.css" />
+
+
+<form id="catalogForm" method="get" action="@Url.Action("Index", "Home")"
+      class="filter-box row gy-4 gx-4 align-items-end mb-5">
+
+    <!-- Campos ocultos -->
+    <input type="hidden" name="Page" value="1" />
+    <input type="hidden" name="section" value="cursos" />
+    <input type="hidden" name="IdMateria" id="IdMateria" value="@f.IdMateria" />
+
+    <!-- MATÉRIAS COMO BOTÕES -->
+    <div class="col-10 mx-auto text-center">
+
+        <!-- ✅ Novo título acima do label -->
+        <h2 class="fw-bold mb-3" style="font-family: 'Montserrat', sans-serif;">
+            Áreas de Conhecimento
+        </h2>
+
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+            @foreach (var m in Model.Materias)
+            {
+                var isActive = f.IdMateria == m.Id;
+
+                <button type="button"
+                        class="materia-btn @(isActive ? "active" : "")"
+                        data-id="@m.Id">
+                    @m.Nome
+                </button>
+            }
+
+            <!-- Botão "Todas" -->
+            <button type="button"
+                    class="materia-btn @(f.IdMateria == null ? "active" : "")"
+                    data-id="">
+                Todas
+            </button>
+        </div>
+    </div>
+
+
+    <!-- BUSCA -->
+    <div class="row justify-content-center mt-5 mb-4">
+        <div class="col-md-6">
+
+            <h3 class="fw-bold text-center mb-3" style="font-family: 'Montserrat', sans-serif;">
+                Encontre o Curso Ideal
+            </h3>
+
+            <div class="d-flex align-items-center justify-content-center">
+
+                <!-- ✅ Barra de busca refinada -->
+                <div class="input-group shadow-sm search-wrapper flex-grow-1">
+                    <span class="input-group-text bg-white border-0 ps-3">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+
+                    <input type="text"
+                           name="Q"
+                           class="form-control search-input border-0"
+                           value="@f.Q"
+                           placeholder="Nome ou Descrição..." />
+                </div>
+
+                <!-- ✅ Ícone de refresh (limpar filtros) -->
+                <a href="/?section=cursos"
+                   class="btn btn-light ms-3 shadow-sm refresh-btn"
+                   title="Limpar filtros">
+                    <i class="bi bi-arrow-clockwise fs-4 text-secondary"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTÃO APLICAR -->
+    <div class="col-12 d-flex justify-content-center mt-3">
+        <button type="submit" class="btn apply-btn px-5 py-2 shadow-sm">
+            <i class="bi bi-funnel-fill me-2"></i> Aplicar Filtros
+        </button>
+    </div>
+
+
+</form>
+
+
+<h2 class="text-center fw-bold mb-5" style="font-family: 'Montserrat', sans-serif; font-size: 2rem;">
+    Áreas de Conhecimento
+</h2>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 d-flex justify-content-center">
+    @foreach (var c in result.Items)
+    {
+        <div class="col" style="max-width: 400px;">
+            <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden position-relative curso-card"
+                 style="border-top: 6px solid #ffc107; cursor: pointer;"
+                 data-nome="@c.Nome"
+                 data-materia="@c.NomeMateria"
+                 data-tipo="@c.NomeTipoCurso"
+                 data-carga="@c.CargaHoraria"
+                 data-imagem="@c.ImagemCapaUrl">
+
+                <img class="card-img-top img-fluid"
+                     src="@(c.ImagemCapaUrl ?? $"https://picsum.photos/400/300?random={c.Id}")"
+                     alt="@c.Nome"
+                     style="object-fit: cover; height: 200px;" />
+
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold mb-2" style="font-family: 'Montserrat', sans-serif;">
+                            @c.Nome
+                        </h5>
+
+                        <p class="card-text small text-muted mb-1">
+                            @c.NomeMateria · <span class="text-success fw-semibold">@c.NomeTipoCurso</span>
+                        </p>
+
+                        <p class="card-text small">@c.Descricao</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="cursoModal" tabindex="-1" aria-labelledby="cursoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 shadow border border-3 border-danger">
+
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="cursoModalLabel">Detalhes do Curso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body d-flex gap-4 align-items-start">
+                <img id="modalImagem"
+                     src=""
+                     class="rounded-3"
+                     style="width: 180px; height: 180px; object-fit: cover;">
+
+                <div class="flex-grow-1">
+                    <p><strong>Nome:</strong> <span id="modalNome"></span></p>
+                    <p><strong>Matéria:</strong> <span id="modalMateria"></span></p>
+                    <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+                    <p><strong>Carga Horária:</strong> <span id="modalCarga"></span> horas</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Docente"))
+                {
+                    <a asp-area="Admin" asp-controller="Manage" asp-action="Index"
+                       class="btn btn-gradient fw-bold px-4">
+                        <i class="bi bi-gear-fill me-2"></i> Gestão de Cursos
+                    </a>
+
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"
+                       class="btn btn-gradient fw-bold px-4 ms-2">
+                        <i class="bi bi-gear-fill me-2"></i> Dashboard
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/CursoCatalogSection.js"></script>
